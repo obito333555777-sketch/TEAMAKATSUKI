@@ -2,250 +2,279 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AKATSUKI CHAT</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
-body{
-  background:#050505;
-  color:white;
-  min-height:100vh;
+body {
+  background: #050505;
+  color: white;
+  min-height: 100vh;
 }
 
-button{cursor:pointer}
+button {
+  cursor: pointer;
+}
 
-#home{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  padding:25px;
+/* HOME */
+
+#home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
   background:
-    radial-gradient(circle,#350000,#100000 40%,#050505 75%);
+    radial-gradient(circle, #350000, #100000 40%, #050505 75%);
 }
 
-.logo{
-  font-size:48px;
-  font-weight:900;
-  letter-spacing:7px;
-  color:#ff2020;
-  text-shadow:0 0 15px red;
-  margin-bottom:12px;
-  text-align:center;
+.logo {
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: 7px;
+  color: #ff2020;
+  text-shadow: 0 0 15px red;
+  margin-bottom: 12px;
+  text-align: center;
 }
 
-.subtitle{
-  color:#aaa;
-  letter-spacing:3px;
-  margin-bottom:35px;
+.subtitle {
+  color: #aaa;
+  letter-spacing: 3px;
+  margin-bottom: 35px;
+  text-align: center;
 }
 
-.roomBox{
-  width:100%;
-  max-width:430px;
+.roomBox {
+  width: 100%;
+  max-width: 430px;
 }
 
-.roomBox input{
-  width:100%;
-  padding:16px;
-  background:#111;
-  color:white;
-  border:1px solid #700000;
-  border-radius:10px;
-  outline:none;
-  font-size:16px;
-  margin-bottom:10px;
+.roomBox input {
+  width: 100%;
+  padding: 16px;
+  background: #111;
+  color: white;
+  border: 1px solid #700000;
+  border-radius: 10px;
+  outline: none;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 
-.enter{
-  width:100%;
-  padding:15px;
-  background:#d00000;
-  color:white;
-  border:0;
-  border-radius:10px;
-  font-size:17px;
-  font-weight:bold;
+.enter {
+  width: 100%;
+  padding: 15px;
+  background: #d00000;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: bold;
 }
 
-#error{
-  color:#ff3333;
-  margin-top:15px;
-  display:none;
+#error {
+  color: #ff3333;
+  margin-top: 15px;
+  display: none;
+  text-align: center;
 }
 
-#chat{
-  display:none;
-  height:100vh;
-  flex-direction:column;
-  background:#070707;
+/* CHAT */
+
+#chat {
+  display: none;
+  height: 100dvh;
+  flex-direction: column;
+  background: #070707;
 }
 
-.header{
-  padding:15px;
-  background:#120000;
-  border-bottom:1px solid #700000;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+.header {
+  padding: 15px;
+  background: #120000;
+  border-bottom: 1px solid #700000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.title{
-  color:#ff2020;
-  font-weight:bold;
-  letter-spacing:2px;
+.title {
+  color: #ff2020;
+  font-weight: bold;
+  letter-spacing: 2px;
+  overflow-wrap: anywhere;
 }
 
-.exit{
-  background:#111;
-  color:white;
-  border:1px solid #700000;
-  padding:8px 12px;
-  border-radius:7px;
+.exit {
+  flex-shrink: 0;
+  background: #111;
+  color: white;
+  border: 1px solid #700000;
+  padding: 8px 12px;
+  border-radius: 7px;
 }
 
-.messages{
-  flex:1;
-  overflow-y:auto;
-  padding:15px;
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
 }
 
-.message{
-  max-width:85%;
-  background:#181818;
-  border-left:3px solid #d00000;
-  padding:10px;
-  border-radius:10px;
-  margin-bottom:12px;
-  word-wrap:break-word;
+.message {
+  max-width: 85%;
+  background: #181818;
+  border-left: 3px solid #d00000;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  overflow-wrap: anywhere;
 }
 
-.message.me{
-  margin-left:auto;
-  background:#350000;
-  border-left:0;
-  border-right:3px solid red;
+.message.me {
+  margin-left: auto;
+  background: #350000;
+  border-left: 0;
+  border-right: 3px solid red;
 }
 
-.message img{
-  max-width:230px;
-  width:100%;
-  border-radius:8px;
-  display:block;
+.message img {
+  max-width: 230px;
+  width: 100%;
+  border-radius: 8px;
+  display: block;
 }
 
-.msgActions{
-  margin-top:7px;
-  display:flex;
-  gap:5px;
+.message audio {
+  width: 100%;
+  max-width: 250px;
 }
 
-.msgActions button{
-  background:#111;
-  color:#ddd;
-  border:1px solid #600000;
-  padding:5px 8px;
-  border-radius:5px;
-  font-size:11px;
+.msgActions {
+  margin-top: 7px;
+  display: flex;
+  gap: 5px;
 }
 
-.time{
-  color:#777;
-  font-size:10px;
-  margin-top:5px;
+.msgActions button {
+  background: #111;
+  color: #ddd;
+  border: 1px solid #600000;
+  padding: 5px 8px;
+  border-radius: 5px;
+  font-size: 11px;
 }
 
-.inputArea{
-  padding:10px;
-  background:#100000;
-  border-top:1px solid #700000;
+.time {
+  color: #999;
+  font-size: 10px;
+  margin-top: 5px;
 }
 
-.inputRow{
-  display:flex;
-  gap:6px;
-  align-items:center;
+/* INPUT */
+
+.inputArea {
+  padding: 10px;
+  background: #100000;
+  border-top: 1px solid #700000;
 }
 
-.textInput{
-  flex:1;
-  min-width:0;
-  padding:13px;
-  border-radius:9px;
-  border:1px solid #500000;
-  background:#151515;
-  color:white;
-  outline:none;
+.inputRow {
+  display: flex;
+  gap: 6px;
+  align-items: center;
 }
 
-.iconBtn{
-  width:43px;
-  height:43px;
-  border:0;
-  border-radius:9px;
-  background:#a00000;
-  color:white;
-  font-size:19px;
+.textInput {
+  flex: 1;
+  min-width: 0;
+  padding: 13px;
+  border-radius: 9px;
+  border: 1px solid #500000;
+  background: #151515;
+  color: white;
+  outline: none;
 }
 
-.send{
-  background:#e00000;
+.iconBtn {
+  flex-shrink: 0;
+  width: 43px;
+  height: 43px;
+  border: 0;
+  border-radius: 9px;
+  background: #a00000;
+  color: white;
+  font-size: 19px;
 }
 
-.recording{
-  background:#ff0000!important;
+.send {
+  background: #e00000;
 }
 
-#cameraBox{
-  display:none;
-  padding:10px;
-  background:#111;
-  text-align:center;
+.recording {
+  background: #ff0000 !important;
 }
 
-#cameraPreview{
-  width:100%;
-  max-width:350px;
-  border-radius:10px;
+/* CAMERA */
+
+#cameraBox {
+  display: none;
+  padding: 10px;
+  background: #111;
+  text-align: center;
 }
 
-.cameraButtons{
-  margin-top:8px;
-  display:flex;
-  justify-content:center;
-  gap:8px;
+#cameraPreview {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 10px;
 }
 
-.cameraButtons button{
-  padding:9px 14px;
-  border:0;
-  border-radius:7px;
-  background:#d00000;
-  color:white;
+.cameraButtons {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
 }
 
-@media(max-width:500px){
-  .logo{
-    font-size:40px;
-    letter-spacing:5px;
+.cameraButtons button {
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 7px;
+  background: #d00000;
+  color: white;
+}
+
+@media (max-width: 500px) {
+  .logo {
+    font-size: 40px;
+    letter-spacing: 5px;
   }
 
-  .message{
-    max-width:90%;
+  .message {
+    max-width: 90%;
   }
 
-  .iconBtn{
-    width:40px;
-    height:40px;
-    font-size:17px;
+  .iconBtn {
+    width: 36px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .inputRow {
+    gap: 4px;
+  }
+
+  .textInput {
+    padding: 11px 8px;
   }
 }
 </style>
@@ -253,13 +282,13 @@ button{cursor:pointer}
 
 <body>
 
+<!-- HOME PAGE -->
+
 <section id="home">
 
   <div class="logo">AKATSUKI</div>
 
-  <div class="subtitle">
-    PRIVATE CHAT ROOMS
-  </div>
+  <div class="subtitle">PRIVATE CHAT ROOMS</div>
 
   <div class="roomBox">
 
@@ -268,36 +297,40 @@ button{cursor:pointer}
       type="text"
       placeholder="Enter room code..."
       autocomplete="off"
+      maxlength="50"
     >
 
-    <button class="enter" onclick="joinRoom()">
+    <button class="enter" id="joinButton">
       JOIN ROOM
     </button>
 
   </div>
 
-  <div id="error">
+  <div id="error" role="alert">
     Please enter a room code.
   </div>
 
 </section>
 
 
+<!-- CHAT PAGE -->
+
 <section id="chat">
 
   <header class="header">
 
     <div class="title">
-      🔴 ROOM:
-      <span id="roomName"></span>
+      🔴 ROOM: <span id="roomName"></span>
     </div>
 
-    <button class="exit" onclick="leaveRoom()">
+    <button class="exit" id="exitButton">
       EXIT
     </button>
 
   </header>
 
+
+  <!-- CAMERA -->
 
   <div id="cameraBox">
 
@@ -309,11 +342,11 @@ button{cursor:pointer}
 
     <div class="cameraButtons">
 
-      <button onclick="takePhoto()">
+      <button id="takePhotoButton">
         📸 Take Photo
       </button>
 
-      <button onclick="closeCamera()">
+      <button id="closeCameraButton">
         ✖ Close
       </button>
 
@@ -322,8 +355,12 @@ button{cursor:pointer}
   </div>
 
 
+  <!-- MESSAGES -->
+
   <main class="messages" id="messages"></main>
 
+
+  <!-- INPUT AREA -->
 
   <div class="inputArea">
 
@@ -331,46 +368,45 @@ button{cursor:pointer}
 
       <button
         class="iconBtn"
-        onclick="openCamera()">
+        id="cameraButton"
+        title="Open camera">
         📷
       </button>
-
 
       <input
         id="gallery"
         type="file"
         accept="image/*"
         hidden
-        onchange="sendImage(event)"
       >
 
       <button
         class="iconBtn"
-        onclick="document.getElementById('gallery').click()">
+        id="galleryButton"
+        title="Choose image">
         🖼️
       </button>
-
 
       <button
         id="voiceButton"
         class="iconBtn"
-        onclick="toggleVoice()">
+        title="Record voice">
         🎙️
       </button>
-
 
       <input
         id="messageInput"
         class="textInput"
         type="text"
         placeholder="Type message..."
-        onkeydown="if(event.key==='Enter')sendMessage()"
+        autocomplete="off"
+        maxlength="2000"
       >
-
 
       <button
         class="iconBtn send"
-        onclick="sendMessage()">
+        id="sendButton"
+        title="Send message">
         ➤
       </button>
 
@@ -381,27 +417,25 @@ button{cursor:pointer}
 </section>
 
 
-<!-- FIREBASE -->
-
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
 
 import {
   getDatabase,
   ref,
   push,
   set,
-  update,
-  remove,
-  onValue
-}
-from "https://www.gstatic.com/firebasejs/13.0.0/firebase-database.js";
+  onChildAdded,
+  query,
+  limitToLast
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-database.js";
 
 
 /* =================================
-   🔥 YOUR FIREBASE CONFIG
+   FIREBASE CONFIG
 ================================= */
 
 const firebaseConfig = {
@@ -416,30 +450,725 @@ const firebaseConfig = {
 
 
 /* =================================
-   FIREBASE START
+   INITIALIZE FIREBASE
 ================================= */
 
-const app =
-  initializeApp(firebaseConfig);
-
-const db =
-  getDatabase(app);
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
 
 /* =================================
-   ROOM
+   ELEMENTS
+================================= */
+
+const home = document.getElementById("home");
+const chat = document.getElementById("chat");
+const roomCodeInput = document.getElementById("roomCode");
+const errorBox = document.getElementById("error");
+const roomName = document.getElementById("roomName");
+const messagesBox = document.getElementById("messages");
+const messageInput = document.getElementById("messageInput");
+
+const gallery = document.getElementById("gallery");
+const cameraBox = document.getElementById("cameraBox");
+const cameraPreview = document.getElementById("cameraPreview");
+const voiceButton = document.getElementById("voiceButton");
+
+
+/* =================================
+   STATE
 ================================= */
 
 let currentRoom = "";
-
 let messagesRef = null;
-
 let unsubscribe = null;
+
+let cameraStream = null;
+let mediaRecorder = null;
+let audioChunks = [];
+
+let isJoining = false;
 
 
 /* =================================
    DEVICE ID
 ================================= */
 
-let myId =
- 
+function getDeviceId() {
+
+  let id = localStorage.getItem("akatsukiDeviceId");
+
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem("akatsukiDeviceId", id);
+  }
+
+  return id;
+}
+
+const myId = getDeviceId();
+
+
+/* =================================
+   HELPERS
+================================= */
+
+function showError(message) {
+  errorBox.textContent = message;
+  errorBox.style.display = "block";
+}
+
+function hideError() {
+  errorBox.style.display = "none";
+}
+
+function formatTime(timestamp) {
+
+  return new Date(timestamp || Date.now())
+    .toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+}
+
+function scrollToBottom() {
+  messagesBox.scrollTop = messagesBox.scrollHeight;
+}
+
+
+/* =================================
+   JOIN ROOM
+================================= */
+
+async function joinRoom() {
+
+  if (isJoining) return;
+
+  const code = roomCodeInput.value.trim();
+
+  if (!code) {
+    showError("Please enter a room code.");
+    return;
+  }
+
+  if (!/^[a-zA-Z0-9_-]{1,50}$/.test(code)) {
+    showError("Use only letters, numbers, - or _.");
+    return;
+  }
+
+  isJoining = true;
+  hideError();
+
+  try {
+
+    currentRoom = code;
+
+    messagesRef = query(
+      ref(db, "rooms/" + currentRoom + "/messages"),
+      limitToLast(100)
+    );
+
+    roomName.textContent = currentRoom;
+
+    messagesBox.replaceChildren();
+
+    home.style.display = "none";
+    chat.style.display = "flex";
+
+    unsubscribe = onChildAdded(
+      messagesRef,
+      (snapshot) => {
+
+        const data = snapshot.val();
+
+        if (!data) return;
+
+        renderMessage(snapshot.key, data);
+      },
+      (error) => {
+        console.error(error);
+        alert("Unable to load messages. Check Firebase rules.");
+      }
+    );
+
+    messageInput.focus();
+
+  } catch (error) {
+
+    console.error(error);
+
+    showError("Unable to join room. Check Firebase settings.");
+
+    currentRoom = "";
+    messagesRef = null;
+
+  } finally {
+
+    isJoining = false;
+
+  }
+}
+
+
+/* =================================
+   RENDER MESSAGE
+================================= */
+
+function renderMessage(id, data) {
+
+  const message = document.createElement("div");
+
+  message.className =
+    "message" + (data.sender === myId ? " me" : "");
+
+  if (data.type === "text") {
+
+    const text = document.createElement("div");
+
+    // Safe text rendering; prevents HTML injection.
+    text.textContent = data.text || "";
+
+    message.appendChild(text);
+
+  } else if (data.type === "image") {
+
+    const img = document.createElement("img");
+
+    img.src = data.data;
+    img.alt = "Shared image";
+    img.loading = "lazy";
+
+    message.appendChild(img);
+
+  } else if (data.type === "audio") {
+
+    const audio = document.createElement("audio");
+
+    audio.controls = true;
+    audio.src = data.data;
+    audio.preload = "metadata";
+
+    message.appendChild(audio);
+
+  } else {
+
+    return;
+  }
+
+  const time = document.createElement("div");
+
+  time.className = "time";
+  time.textContent = formatTime(data.timestamp);
+
+  message.appendChild(time);
+
+
+  /* DELETE OWN MESSAGE */
+
+  if (data.sender === myId) {
+
+    const actions = document.createElement("div");
+
+    actions.className = "msgActions";
+
+    const deleteButton = document.createElement("button");
+
+    deleteButton.textContent = "Delete";
+
+    deleteButton.addEventListener("click", async () => {
+
+      if (!confirm("Delete this message?")) return;
+
+      try {
+
+        await set(
+          ref(db, "rooms/" + currentRoom + "/messages/" + id),
+          null
+        );
+
+        message.remove();
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert("Delete failed. Check Firebase rules.");
+
+      }
+
+    });
+
+    actions.appendChild(deleteButton);
+    message.appendChild(actions);
+
+  }
+
+  messagesBox.appendChild(message);
+
+  scrollToBottom();
+}
+
+
+/* =================================
+   SEND MESSAGE
+================================= */
+
+async function sendMessage() {
+
+  if (!currentRoom) return;
+
+  const text = messageInput.value.trim();
+
+  if (!text) return;
+
+  messageInput.value = "";
+
+  try {
+
+    await sendData({
+      type: "text",
+      text: text
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("Message send failed. Check Firebase rules.");
+
+    messageInput.value = text;
+
+  }
+}
+
+
+/* =================================
+   SAVE MESSAGE TO FIREBASE
+================================= */
+
+async function sendData(payload) {
+
+  if (!currentRoom) {
+    throw new Error("No room selected.");
+  }
+
+  const messageRef = push(
+    ref(db, "rooms/" + currentRoom + "/messages")
+  );
+
+  await set(messageRef, {
+    ...payload,
+    sender: myId,
+    timestamp: Date.now()
+  });
+
+}
+
+
+/* =================================
+   IMAGE FILE TO DATA URL
+================================= */
+
+function fileToDataURL(file) {
+
+  return new Promise((resolve, reject) => {
+
+    const reader = new FileReader();
+
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(reader.error);
+
+    reader.readAsDataURL(file);
+
+  });
+
+}
+
+
+/* =================================
+   SEND IMAGE
+================================= */
+
+async function sendImage(event) {
+
+  const file = event.target.files?.[0];
+
+  // Allow selecting the same image again later.
+  event.target.value = "";
+
+  if (!file || !currentRoom) return;
+
+  if (!file.type.startsWith("image/")) {
+    alert("Please select an image.");
+    return;
+  }
+
+  // Limit inline image size to reduce database load.
+  if (file.size > 300 * 1024) {
+    alert("Image is too large. Choose an image under 300 KB.");
+    return;
+  }
+
+  try {
+
+    const data = await fileToDataURL(file);
+
+    await sendData({
+      type: "image",
+      data: data
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("Image send failed.");
+
+  }
+
+}
+
+
+/* =================================
+   CAMERA
+================================= */
+
+async function openCamera() {
+
+  try {
+
+    if (!navigator.mediaDevices?.getUserMedia) {
+      alert("Camera requires HTTPS or localhost.");
+      return;
+    }
+
+    cameraStream = await navigator.mediaDevices.getUserMedia({
+      video: {
+        facingMode: "environment"
+      },
+      audio: false
+    });
+
+    cameraPreview.srcObject = cameraStream;
+
+    cameraBox.style.display = "block";
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("Unable to open camera. Check camera permission.");
+
+  }
+
+}
+
+
+/* =================================
+   TAKE PHOTO
+================================= */
+
+async function takePhoto() {
+
+  if (!cameraStream || !currentRoom) return;
+
+  if (!cameraPreview.videoWidth) {
+    alert("Camera is not ready yet.");
+    return;
+  }
+
+  const canvas = document.createElement("canvas");
+
+  const maxWidth = 800;
+
+  const scale = Math.min(
+    1,
+    maxWidth / cameraPreview.videoWidth
+  );
+
+  canvas.width = Math.round(
+    cameraPreview.videoWidth * scale
+  );
+
+  canvas.height = Math.round(
+    cameraPreview.videoHeight * scale
+  );
+
+  const context = canvas.getContext("2d");
+
+  context.drawImage(
+    cameraPreview,
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  // JPEG compression reduces database usage.
+  const data = canvas.toDataURL("image/jpeg", 0.6);
+
+  if (data.length > 400000) {
+    alert("Photo is too large. Please try again.");
+    return;
+  }
+
+  try {
+
+    await sendData({
+      type: "image",
+      data: data
+    });
+
+    closeCamera();
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("Photo send failed.");
+
+  }
+
+}
+
+
+/* =================================
+   CLOSE CAMERA
+================================= */
+
+function closeCamera() {
+
+  if (cameraStream) {
+
+    cameraStream.getTracks().forEach(track => {
+      track.stop();
+    });
+
+    cameraStream = null;
+
+  }
+
+  cameraPreview.srcObject = null;
+
+  cameraBox.style.display = "none";
+
+}
+
+
+/* =================================
+   VOICE RECORDING
+================================= */
+
+async function toggleVoice() {
+
+  if (mediaRecorder && mediaRecorder.state === "recording") {
+
+    mediaRecorder.stop();
+
+    voiceButton.classList.remove("recording");
+    voiceButton.textContent = "🎙️";
+
+    return;
+  }
+
+  if (!navigator.mediaDevices?.getUserMedia ||
+      typeof MediaRecorder === "undefined") {
+
+    alert("Voice recording is not supported in this browser.");
+    return;
+
+  }
+
+  try {
+
+    const stream = await navigator.mediaDevices.getUserMedia({
+      audio: true
+    });
+
+    audioChunks = [];
+
+    let mimeType = "";
+
+    if (MediaRecorder.isTypeSupported("audio/webm")) {
+      mimeType = "audio/webm";
+    } else if (MediaRecorder.isTypeSupported("audio/mp4")) {
+      mimeType = "audio/mp4";
+    }
+
+    mediaRecorder = mimeType
+      ? new MediaRecorder(stream, { mimeType })
+      : new MediaRecorder(stream);
+
+    mediaRecorder.ondataavailable = event => {
+
+      if (event.data && event.data.size > 0) {
+        audioChunks.push(event.data);
+      }
+
+    };
+
+    mediaRecorder.onstop = async () => {
+
+      try {
+
+        const audioBlob = new Blob(
+          audioChunks,
+          { type: mediaRecorder.mimeType || "audio/webm" }
+        );
+
+        // Stop microphone immediately.
+        stream.getTracks().forEach(track => track.stop());
+
+        if (audioBlob.size > 250 * 1024) {
+          alert("Voice recording is too large. Record a shorter message.");
+          return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = async () => {
+
+          try {
+
+            await sendData({
+              type: "audio",
+              data: reader.result
+            });
+
+          } catch (error) {
+
+            console.error(error);
+
+            alert("Voice message send failed.");
+
+          }
+
+        };
+
+        reader.onerror = () => {
+          alert("Unable to read voice recording.");
+        };
+
+        reader.readAsDataURL(audioBlob);
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert("Voice recording failed.");
+
+      }
+
+    };
+
+    mediaRecorder.start();
+
+    voiceButton.classList.add("recording");
+    voiceButton.textContent = "⏹️";
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("Microphone permission is required.");
+
+  }
+
+}
+
+
+/* =================================
+   EXIT ROOM
+================================= */
+
+function leaveRoom() {
+
+  if (unsubscribe) {
+    unsubscribe();
+    unsubscribe = null;
+  }
+
+  closeCamera();
+
+  if (mediaRecorder && mediaRecorder.state === "recording") {
+    mediaRecorder.stop();
+  }
+
+  voiceButton.classList.remove("recording");
+  voiceButton.textContent = "🎙️";
+
+  currentRoom = "";
+  messagesRef = null;
+
+  messagesBox.replaceChildren();
+
+  chat.style.display = "none";
+  home.style.display = "flex";
+
+  roomCodeInput.value = "";
+
+  hideError();
+
+}
+
+
+/* =================================
+   BUTTON EVENTS
+================================= */
+
+document.getElementById("joinButton")
+  .addEventListener("click", joinRoom);
+
+document.getElementById("exitButton")
+  .addEventListener("click", leaveRoom);
+
+document.getElementById("sendButton")
+  .addEventListener("click", sendMessage);
+
+document.getElementById("cameraButton")
+  .addEventListener("click", openCamera);
+
+document.getElementById("galleryButton")
+  .addEventListener("click", () => gallery.click());
+
+document.getElementById("takePhotoButton")
+  .addEventListener("click", takePhoto);
+
+document.getElementById("closeCameraButton")
+  .addEventListener("click", closeCamera);
+
+document.getElementById("voiceButton")
+  .addEventListener("click", toggleVoice);
+
+gallery.addEventListener("change", sendImage);
+
+roomCodeInput.addEventListener("keydown", event => {
+
+  if (event.key === "Enter") {
+    joinRoom();
+  }
+
+});
+
+messageInput.addEventListener("keydown", event => {
+
+  if (event.key === "Enter") {
+    sendMessage();
+  }
+
+});
+
+window.addEventListener("beforeunload", () => {
+
+  if (unsubscribe) {
+    unsubscribe();
+  }
+
+  closeCamera();
+
+});
+
+</script>
+
+</body>
+</html>
